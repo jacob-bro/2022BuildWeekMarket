@@ -1,6 +1,7 @@
 const db = require('../data/dbConfig.js');
 
 module.exports = {
+  findBy,
   get,
   getById,
   create,
@@ -8,26 +9,30 @@ module.exports = {
   update,
 };
 
+function findBy(filter) {
+    return db('item').where(filter)
+}
+
 function get(){
-	return db("items").select("*")
+	return db("item").select("*")
 }
 
 function getById(id) {
-  return db('items')
+  return db('item')
     .where({ id }).first();
 }
 
 async function create(item) {
-  const [id] = await db('items').insert(item).returning('id');
+  const [id] = await db('item').insert(item).returning('id');
   return findById(id);
 }
 
 function remove(id) {
-  return db('items')
+  return db('item')
     .where({ id }).del();
 }
 
 function update(id, changes) {
-  return db('items')
+  return db('item')
     .where({ id }).update(changes, '*');
 }
