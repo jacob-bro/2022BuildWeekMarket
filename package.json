@@ -7,7 +7,13 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "mg": "knex migrate:latest",
-    "rb": "knex migrate:rollback"
+    "rb": "knex migrate:rollback",
+    "seed": "knex seed:run",
+    "migrateh": "heroku run knex migrate:latest -a 2022buildweek",
+    "rollbackh": "heroku run knex migrate:rollback -a 2022buildweek",
+    "databaseh": "heroku pg:psql -a 2022buildweek",
+    "seedh": "heroku run knex seed:run -a 2022buildweek",
+    "deploy": "git push heroku main"
   },
   "keywords": [],
   "author": "",
